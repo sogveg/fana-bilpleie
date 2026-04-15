@@ -150,7 +150,7 @@ export default function Home() {
 
           {/* Headline */}
           <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] text-white leading-none mb-6">
-            BERGEN SIN
+            BERGENS
             <br />
             <span className="text-[#d24208]">BESTE</span> BILPLEIE
           </h1>

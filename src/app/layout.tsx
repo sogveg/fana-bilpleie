@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "Fana Bilpleie – Profesjonell bilpleie i Bergen",
+    default: "Fana Bilpleie – Bergens beste bilpleie",
     template: "%s | Fana Bilpleie",
   },
   description:
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "bilpleie Fana",
   ],
   openGraph: {
-    title: "Fana Bilpleie – Profesjonell bilpleie i Bergen",
+    title: "Fana Bilpleie – Bergens beste bilpleie",
     description:
       "Bergen sin mest betrodde bilpleie. Bilvask, keramisk coating, lakkrenovering og båtpleie.",
     url: "https://www.fanabilpleie.no",
