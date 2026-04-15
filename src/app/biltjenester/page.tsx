@@ -1,6 +1,39 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle2, Star } from "lucide-react";
+import BeforeAfter from "@/components/BeforeAfter";
+
+const categoryImages: Record<string, string> = {
+  vask:       "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=1200&q=80&auto=format&fit=crop",
+  polering:   "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=1200&q=80&auto=format&fit=crop",
+  coating:    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80&auto=format&fit=crop",
+  klargjoring:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&q=80&auto=format&fit=crop",
+  spesial:    "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&q=80&auto=format&fit=crop",
+};
+
+const beforeAfterPairs = [
+  {
+    label: "Lakkrenovering",
+    before: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d0d?w=900&q=80&auto=format&fit=crop",
+    after:  "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80&auto=format&fit=crop",
+  },
+  {
+    label: "Keramisk Coating",
+    before: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=900&q=80&auto=format&fit=crop",
+    after:  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80&auto=format&fit=crop",
+  },
+  {
+    label: "Interiørvask",
+    before: "https://images.unsplash.com/photo-1504222490345-c075b7b90571?w=900&q=80&auto=format&fit=crop",
+    after:  "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80&auto=format&fit=crop",
+  },
+  {
+    label: "Maskinpolering",
+    before: "https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?w=900&q=80&auto=format&fit=crop",
+    after:  "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80&auto=format&fit=crop",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Biltjenester – Bilvask, Coating & Renovering i Bergen",
@@ -91,8 +124,17 @@ export default function Biltjenester() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-[#111111] pt-[88px] pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16">
+      <section className="relative bg-[#111111] pt-[88px] pb-20 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80&auto=format&fit=crop"
+          alt="Biltjenester Bergen – Fana Bilpleie"
+          fill
+          priority
+          className="object-cover opacity-20"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#111]/60 to-[#111]/90" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-16">
           <p className="text-[#d24208] font-bold text-xs tracking-widest uppercase mb-4">Biltjenester</p>
           <h1 className="font-display text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-6">
             ALT FOR <br />
@@ -116,6 +158,28 @@ export default function Biltjenester() {
         </div>
       </section>
 
+      {/* FØR / ETTER GALLERI */}
+      <section className="py-20 bg-[#111111]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="mb-12 text-center">
+            <p className="text-[#d24208] font-bold text-xs tracking-widest uppercase mb-3">Bevis i bilder</p>
+            <h2 className="font-display text-5xl sm:text-6xl text-white">FØR &amp; ETTER</h2>
+            <p className="text-gray-400 mt-3 max-w-lg mx-auto">Dra i slideren – se hva profesjonell behandling faktisk gjør.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {beforeAfterPairs.map((pair) => (
+              <BeforeAfter
+                key={pair.label}
+                before={pair.before}
+                after={pair.after}
+                label={pair.label}
+              />
+            ))}
+          </div>
+          <p className="text-center text-gray-700 text-xs mt-5">* Illustrasjonsbilder – erstattes med kundebilder ved lansering</p>
+        </div>
+      </section>
+
       {/* CATEGORIES */}
       {categories.map((cat, idx) => (
         <section
@@ -128,8 +192,18 @@ export default function Biltjenester() {
           )}
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row gap-12">
-              {/* Left: info */}
+              {/* Left: image + info */}
               <div className="md:w-1/3">
+                <div className="relative h-48 mb-6 overflow-hidden">
+                  <Image
+                    src={categoryImages[cat.id] ?? categoryImages.vask}
+                    alt={cat.label}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </div>
                 {cat.highlight && (
                   <span className="inline-block bg-[#d24208] text-white text-[10px] font-bold tracking-widest uppercase px-2 py-1 mb-3">
                     Mest populær

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Star,
   ArrowRight,
@@ -12,6 +13,20 @@ import {
   CheckCircle2,
   ChevronRight,
 } from "lucide-react";
+import BeforeAfter from "@/components/BeforeAfter";
+
+// Curated Unsplash photos – swap with real customer photos before launch
+const IMGS = {
+  hero:       "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=85&auto=format&fit=crop",
+  heroMobile: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80&auto=format&fit=crop",
+  // Before/after pairs
+  ba1Before:  "https://images.unsplash.com/photo-1558618047-3c8c76ca7d0d?w=900&q=80&auto=format&fit=crop",
+  ba1After:   "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80&auto=format&fit=crop",
+  ba2Before:  "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=900&q=80&auto=format&fit=crop",
+  ba2After:   "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80&auto=format&fit=crop",
+  ba3Before:  "https://images.unsplash.com/photo-1504222490345-c075b7b90571?w=900&q=80&auto=format&fit=crop",
+  ba3After:   "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80&auto=format&fit=crop",
+};
 
 const services = [
   {
@@ -21,6 +36,7 @@ const services = [
     href: "/biltjenester#vask",
     badge: null,
     boat: false,
+    img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=75&auto=format&fit=crop",
   },
   {
     icon: Sparkles,
@@ -29,6 +45,7 @@ const services = [
     href: "/biltjenester#polering",
     badge: null,
     boat: false,
+    img: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600&q=75&auto=format&fit=crop",
   },
   {
     icon: Shield,
@@ -37,6 +54,7 @@ const services = [
     href: "/biltjenester#coating",
     badge: "Populær",
     boat: false,
+    img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=75&auto=format&fit=crop",
   },
   {
     icon: Car,
@@ -45,6 +63,7 @@ const services = [
     href: "/biltjenester#klargjoring",
     badge: null,
     boat: false,
+    img: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=75&auto=format&fit=crop",
   },
   {
     icon: Wrench,
@@ -53,6 +72,7 @@ const services = [
     href: "/biltjenester#spesial",
     badge: null,
     boat: false,
+    img: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=75&auto=format&fit=crop",
   },
   {
     icon: Anchor,
@@ -61,6 +81,7 @@ const services = [
     href: "/bat",
     badge: "Ny avdeling",
     boat: true,
+    img: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&q=75&auto=format&fit=crop",
   },
 ];
 
@@ -102,14 +123,17 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center bg-[#111111] overflow-hidden pt-[88px]">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-            backgroundSize: "20px 20px",
-          }}
+        {/* Background photo */}
+        <Image
+          src={IMGS.hero}
+          alt="Profesjonell bilpleie Bergen – Fana Bilpleie"
+          fill
+          priority
+          className="object-cover opacity-30"
+          sizes="100vw"
         />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/60 via-[#111111]/40 to-[#111111]/80" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#d24208] opacity-10 blur-[140px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-24 flex flex-col items-center text-center">
@@ -176,6 +200,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FØR / ETTER */}
+      <section className="py-24 bg-[#111111]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="mb-14 text-center">
+            <p className="text-[#d24208] font-bold text-xs tracking-widest uppercase mb-3">Resultatene taler for seg</p>
+            <h2 className="font-display text-5xl sm:text-6xl text-white">FØR &amp; ETTER</h2>
+            <p className="text-gray-400 mt-4 max-w-xl mx-auto">
+              Dra i slideren og se forskjellen profesjonell bilpleie gjør.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <BeforeAfter
+              before={IMGS.ba1Before}
+              after={IMGS.ba1After}
+              label="Lakkrenovering"
+            />
+            <BeforeAfter
+              before={IMGS.ba2Before}
+              after={IMGS.ba2After}
+              label="Maskinpolering"
+            />
+            <BeforeAfter
+              before={IMGS.ba3Before}
+              after={IMGS.ba3After}
+              label="Keramisk Coating"
+            />
+          </div>
+          <p className="text-center text-gray-600 text-xs mt-6">
+            * Illustrasjonsbilder – erstattes med kundebilder ved lansering
+          </p>
+        </div>
+      </section>
+
       {/* TJENESTER */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -194,25 +251,39 @@ export default function Home() {
                 <Link
                   key={s.title}
                   href={s.href}
-                  className={`group relative p-8 border-2 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl ${
+                  className={`group relative flex flex-col overflow-hidden border-2 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl ${
                     s.boat
-                      ? "border-[#1a4a7a] hover:border-[#2563a8] bg-[#f0f5fb]"
-                      : "border-gray-100 hover:border-[#d24208] bg-white"
+                      ? "border-[#1a4a7a] hover:border-[#2563a8]"
+                      : "border-gray-100 hover:border-[#d24208]"
                   }`}
                 >
-                  {s.badge && (
-                    <span className={`absolute top-4 right-4 text-white text-[10px] font-bold tracking-widest uppercase px-2 py-1 ${s.boat ? "bg-[#1a4a7a]" : "bg-[#d24208]"}`}>
-                      {s.badge}
-                    </span>
-                  )}
-                  <div className={`w-12 h-12 flex items-center justify-center mb-5 ${s.boat ? "bg-[#1a4a7a]" : "bg-[#d24208]"}`}>
-                    <Icon size={22} className="text-white" />
+                  {/* Image */}
+                  <div className="relative h-44 overflow-hidden">
+                    <Image
+                      src={s.img}
+                      alt={s.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    {s.badge && (
+                      <span className={`absolute top-3 right-3 text-white text-[10px] font-bold tracking-widest uppercase px-2 py-1 ${s.boat ? "bg-[#1a4a7a]" : "bg-[#d24208]"}`}>
+                        {s.badge}
+                      </span>
+                    )}
                   </div>
-                  <h3 className="font-bold text-[#111111] text-lg mb-2">{s.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{s.desc}</p>
-                  <span className={`flex items-center gap-1.5 text-xs font-bold tracking-wide uppercase ${s.boat ? "text-[#1a4a7a]" : "text-[#d24208]"} group-hover:gap-2.5 transition-all`}>
-                    Les mer <ChevronRight size={13} />
-                  </span>
+                  {/* Content */}
+                  <div className={`p-6 flex flex-col flex-1 ${s.boat ? "bg-[#f0f5fb]" : "bg-white"}`}>
+                    <div className={`w-10 h-10 flex items-center justify-center mb-4 ${s.boat ? "bg-[#1a4a7a]" : "bg-[#d24208]"}`}>
+                      <Icon size={18} className="text-white" />
+                    </div>
+                    <h3 className="font-bold text-[#111111] text-lg mb-2">{s.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{s.desc}</p>
+                    <span className={`flex items-center gap-1.5 text-xs font-bold tracking-wide uppercase ${s.boat ? "text-[#1a4a7a]" : "text-[#d24208]"} group-hover:gap-2.5 transition-all`}>
+                      Les mer <ChevronRight size={13} />
+                    </span>
+                  </div>
                 </Link>
               );
             })}

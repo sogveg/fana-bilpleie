@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle2, Phone, Anchor, Waves, Shield, Sparkles } from "lucide-react";
+import BeforeAfter from "@/components/BeforeAfter";
 
 export const metadata: Metadata = {
   title: "Båtavdelingen – Profesjonell båtpleie i Bergen",
@@ -49,15 +51,15 @@ export default function Bat() {
     <>
       {/* HERO */}
       <section className="bg-[#0d2f52] pt-[88px] pb-20 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(-45deg, #fff 0, #fff 1px, transparent 0, transparent 40%)",
-            backgroundSize: "30px 30px",
-          }}
+        <Image
+          src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1600&q=80&auto=format&fit=crop"
+          alt="Båtpleie Bergen – Fana Bilpleie Båtavdelingen"
+          fill
+          priority
+          className="object-cover opacity-25"
+          sizes="100vw"
         />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1a4a7a]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d2f52]/70 to-[#0d2f52]/95" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-16">
           <div className="flex items-center gap-3 mb-6">
@@ -128,6 +130,30 @@ export default function Bat() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* FØR / ETTER */}
+      <section className="py-20 bg-[#0d2f52]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="mb-12 text-center">
+            <p className="text-blue-300 font-bold text-xs tracking-widest uppercase mb-3">Resultater</p>
+            <h2 className="font-display text-5xl text-white">FØR &amp; ETTER</h2>
+            <p className="text-blue-200 mt-3 max-w-lg mx-auto">Se hva profesjonell båtpleie gjør for utseendet og holdbarheten.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <BeforeAfter
+              before="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=900&q=80&auto=format&fit=crop"
+              after="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=900&q=80&auto=format&fit=crop"
+              label="Skrogpolering"
+            />
+            <BeforeAfter
+              before="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=900&q=80&auto=format&fit=crop"
+              after="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=900&q=80&auto=format&fit=crop"
+              label="Dekkrenovering"
+            />
+          </div>
+          <p className="text-center text-blue-900 text-xs mt-5">* Illustrasjonsbilder – erstattes med kundebilder ved lansering</p>
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, MapPin, Clock, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -31,8 +32,17 @@ export default function OmOss() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-[#111111] pt-[88px] pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16">
+      <section className="relative bg-[#111111] pt-[88px] pb-20 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=1600&q=80&auto=format&fit=crop"
+          alt="Fana Bilpleie verksted Bergen"
+          fill
+          priority
+          className="object-cover opacity-20"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#111]/50 to-[#111]/90" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-16">
           <p className="text-[#d24208] font-bold text-xs tracking-widest uppercase mb-4">Om oss</p>
           <h1 className="font-display text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-6">
             LIDENSKAPELIG
@@ -74,18 +84,29 @@ export default function OmOss() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { num: "10+", label: "År i bransjen" },
-              { num: "500+", label: "Fornøyde kunder" },
-              { num: "4.9★", label: "Google-snitt" },
-              { num: "100%", label: "Fornøyd-garanti" },
-            ].map((s) => (
-              <div key={s.label} className="bg-[#111111] p-8 text-center">
-                <div className="font-display text-4xl text-[#d24208] mb-2">{s.num}</div>
-                <div className="text-gray-400 text-sm">{s.label}</div>
-              </div>
-            ))}
+          <div className="flex flex-col gap-4">
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80&auto=format&fit=crop"
+                alt="Fana Bilpleie – profesjonelt håndverk"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { num: "10+", label: "År i bransjen" },
+                { num: "500+", label: "Fornøyde kunder" },
+                { num: "4.9★", label: "Google-snitt" },
+                { num: "100%", label: "Fornøyd-garanti" },
+              ].map((s) => (
+                <div key={s.label} className="bg-[#111111] p-6 text-center">
+                  <div className="font-display text-4xl text-[#d24208] mb-1">{s.num}</div>
+                  <div className="text-gray-400 text-sm">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
